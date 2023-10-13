@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, Animated, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Image, Animated, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { Stack } from 'expo-router';
 import styles from './index.style'
 import image1 from '../../assets/images/landing/1.png'
@@ -14,23 +14,24 @@ import image9 from '../../assets/images/landing/9.png'
 import image10 from '../../assets/images/landing/10.png'
 import image11 from '../../assets/images/landing/11.png'
 import image12 from '../../assets/images/landing/12.png'
+import elipse from '../../assets/images/landing/elipse.png'
 
 const Landing = () => {
 
     // const row1AnimationValue = React.useRef(new Animated.Value(0)).current;
 
-    var num = -50;
+    var num = 0;
     var loop = 0;
 
     state = {
-        animation: new Animated.Value(0),
-        animation2: new Animated.Value(0),
+        animation: new Animated.Value(-30),
+        animation2: new Animated.Value(-30),
 
-        animation3: new Animated.Value(0),
-        animation4: new Animated.Value(0),
+        animation3: new Animated.Value(-60),
+        animation4: new Animated.Value(-60),
 
-        animation5: new Animated.Value(0),
-        animation6: new Animated.Value(0),
+        animation5: new Animated.Value(-90),
+        animation6: new Animated.Value(-90),
       };
 
       //TOP IMAGE ROW
@@ -39,68 +40,65 @@ const Landing = () => {
             Animated.loop(
                 Animated.parallel([
                 Animated.timing(this.state.animation, {
-                    toValue: num,
+                    toValue: num - 40,
                     duration: 1500,
                     useNativeDriver: true,
                 }),
                 Animated.timing(this.state.animation2, {
-                    toValue: num,
+                    toValue: num - 40,
                     duration: 1500,
                     useNativeDriver: true,
                 })]
                 ).start(({finished}) => {
                     Animated.parallel([
                         Animated.timing(this.state.animation, {
-                            toValue: num - 50,
+                            toValue: num - 60,
                             duration: 1500,
                             useNativeDriver: true,
-                            delay: 500
+                            delay: 400
                         }),
                         Animated.timing(this.state.animation2, {
-                            toValue: num - 50,
+                            toValue: num - 60,
                             duration: 1500,
                             useNativeDriver: true,
-                            delay: 500
+                            delay: 400
                         })
                     ]).start(({finished}) => {
                         Animated.parallel([
                             Animated.timing(this.state.animation, {
-                                toValue: num - 100,
+                                toValue: num - 80,
                                 duration: 1500,
                                 useNativeDriver: true,
-                                delay: 1000
+                                delay: 400
                             }),
                             Animated.timing(this.state.animation2, {
-                                toValue: num - 100,
+                                toValue: num - 80,
                                 duration: 1500,
                                 useNativeDriver: true,
-                                delay: 1000
+                                delay: 400
                             })
                         ]).start(({finished}) =>{
                             Animated.parallel([
                                 Animated.timing(this.state.animation, {
-                                    toValue: 0,
+                                    toValue: -40,
                                     duration: 1500,
                                     useNativeDriver: true,
-                                    delay: 1000
+                                    delay: 400
                                 }),
                                 Animated.timing(this.state.animation2, {
-                                    toValue: 0,
+                                    toValue: -40,
                                     duration: 1500,
                                     useNativeDriver: true,
-                                    delay: 1000
+                                    delay: 400
                                 })
                             ]).start();
                         });
                     });
-                    // this.state.animation.setValue(0);
-                    // this.state.animation2.setValue(0);
-                })).start(() => {
-                loop += 1;
-            })
+ 
+                })).start()
         };
         if (loop < 10) {
-            startAnimation(); 
+            // startAnimation(); 
         }
         // startAnimation(); 
 
@@ -195,7 +193,7 @@ const Landing = () => {
       const animatedStyles = {
         transform: [
             {translateY: this.state.animation},
-            {translateX: this.state.animation2.add(50)},
+            {translateX: this.state.animation2},
             { rotate: '35deg'}
         ]
       }
@@ -224,37 +222,61 @@ const Landing = () => {
             <View style={styles.container}>
                 <View style={styles.topSection}>
                     <View style={styles.imgContainer}>
-                    <TouchableWithoutFeedback onPress={this.startAnimation}>
+                        <TouchableWithoutFeedback onPress={this.startAnimation}>
+                            <Animated.View style={[styles.imgRow, animatedStyles]}>
+                                <Image source={image1} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image2} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image3} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image4} style={styles.sideImg} resizeMode='contain' />
+                            </Animated.View>
+                        </TouchableWithoutFeedback>
 
-                        <Animated.View style={[styles.imgRow, animatedStyles]}>
-                            <Image source={image1} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image2} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image3} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image4} style={styles.sideImg} resizeMode='contain' />
-                        </Animated.View>
-                    </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={this.startAnimation2}>
+                            <Animated.View style={[styles.imgRow, animatedStyles2]}>
+                                <Image source={image5} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image6} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image7} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image8} style={styles.sideImg} resizeMode='contain' />
+                            </Animated.View>
+                        </TouchableWithoutFeedback>
 
-                        <Animated.View style={[styles.imgRow, animatedStyles2]}>
-                            <Image source={image5} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image6} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image7} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image8} style={styles.sideImg} resizeMode='contain' />
-                        </Animated.View>
+                        <TouchableWithoutFeedback onPress={this.startAnimation3}>
+                            <Animated.View style={[styles.imgRow, animatedStyles3]}>
+                                <Image source={image9} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image10} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image11} style={styles.sideImg} resizeMode='contain' />
+                                <Image source={image12} style={styles.sideImg} resizeMode='contain' />
+                            </Animated.View>
+                        </TouchableWithoutFeedback>
 
-                        <Animated.View style={[styles.imgRow, animatedStyles3]}>
-                            <Image source={image9} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image10} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image11} style={styles.sideImg} resizeMode='contain' />
-                            <Image source={image12} style={styles.sideImg} resizeMode='contain' />
-                        </Animated.View>
-                        {/* <Text>
-                            Images Section
-                        </Text> */}
                     </View>
-
-                    <Text>Your Travel Companion</Text>
+                    
 
                 </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.headerText}>
+                            Your Travel Companion
+                        </Text>
+
+                        <Text style={styles.subText}>
+                            orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        </Text>
+                    </View>
+
+                    <View style={styles.bottomContainer}>
+                        <View style={styles.w50}>
+                            <Image source={elipse} resizeMode='cover' style={styles.elipseImg} />
+                        </View>
+                        
+                        <View style={styles.w50}>
+                            <TouchableOpacity style={styles.nextBtn}>
+                                <Text style={styles.btnText}>
+                                    Next
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
             </View>
         </>
         
